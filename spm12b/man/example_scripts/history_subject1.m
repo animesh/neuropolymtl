@@ -1,6 +1,6 @@
 spm('defaults', 'eeg');
 
-pth = 'C:\data\mmn';
+pth = 'W:\iegg_insula\Animesh';
 
 S = [];
 S.dataset = fullfile(pth,'subject1.bdf');
