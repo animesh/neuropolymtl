@@ -57,8 +57,7 @@ plot(f,phase);
 
 maxlags = numel(xs)*0.5;
 [xcv,lag] = xcov(xs,maxlags);
-[~,df] = findpeaks(xcv,'MinPeakDistance',5*2*24)
-[~,mf] = findpeaks(xcv);
+[~,df] = findpeaks(xcv,'MinPeakHeight',0.3)
 plot(lag,xcv)
 
 
