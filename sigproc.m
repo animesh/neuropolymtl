@@ -1,6 +1,6 @@
 %% simulate and plot
 
-plot(rand(100))
+plot(rand(1000))
 
 x = rand(1024,1);
 z=mscohere(sin(x),cos(x))
@@ -27,6 +27,7 @@ corr(abs(fft(xs)),abs(fft(xc)))
 mscohere(xs,xc)
 mscohere(xs,xc,hanning(24),12,24)
 z=mscohere(xs,xc)
+hist(z)
 
 plot(x)
 plot(xc)
@@ -34,6 +35,27 @@ plot(xs)
 plot(xs,xc,'r.')
 plot(xcorr(x,x))
 plot(xcorr(xs,xc))
+
+%% fft 
+
+Y=fft(xs)
+n=length(Y);
+power = abs(Y(1:floor(n/2))).^2;
+nyquist = 1/2;
+freq = (1:n/2)/(n/2)*nyquist;
+plot(freq,power)
+
+period=1./freq;
+plot(period,power);
+
+hold on;
+index=find(power==max(power));
+mainPeriodStr=num2str(period(index));
+plot(period(index),power(index),'r.', 'MarkerSize',25);
+text(period(index)+2,power(index),['Period = ',mainPeriodStr]);
+hold off;
+
+
 
 %% epileptogenicity index
 
@@ -60,5 +82,6 @@ maxlags = numel(xs)*0.5;
 [~,df] = findpeaks(xcv,'MinPeakHeight',0.3)
 plot(lag,xcv)
 
-
+%% source
+%http://www.mathworks.com/help/matlab/examples/using-fft.html
 %http://www.mathworks.com/help/signal/examples/measuring-signal-similarities.html
