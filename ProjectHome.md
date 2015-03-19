@@ -1,0 +1,1 @@
+Intracortical recordings will be used to assess the connectivity pattern of the regions of the brain
